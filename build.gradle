@@ -12,8 +12,27 @@ repositories {
 }
 
 dependencies {
+
+    // SpringBoot
+    implementation 'org.springframework.boot:spring-boot-starter:2.7.3'
+    implementation 'org.springframework.boot:spring-boot-starter-batch:2.7.3'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    // H2
+    runtimeOnly 'com.h2database:h2:2.1.212'
+
+    // Junit
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 tasks.withType(JavaCompile) {
