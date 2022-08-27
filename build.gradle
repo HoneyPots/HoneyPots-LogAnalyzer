@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.honeypot'
-version '1.0-SNAPSHOT'
+version '0.0.1'
 sourceCompatibility = '17'
 
 repositories {
@@ -45,4 +45,28 @@ test {
 
 run {
     mainClassName = 'com.honeypot.Main'
+    /*
+    jvmArgs("-Dspring.config.location=./config/application-prod.yml",
+            "-DansiFormatFileDir=./sample/ansi/",
+            "-DregexFormatFileDir=./sample/regex/",
+            "-DfileDir=./sample/",
+            "-DfileName=agent_backup2.log"
+    )
+     */
 }
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'com.honeypot.Main'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+distTar.enabled = false
