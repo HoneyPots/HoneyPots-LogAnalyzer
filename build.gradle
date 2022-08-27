@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'org.springframework.boot' version '2.6.6'
 }
 
 group 'com.honeypot'
@@ -54,6 +55,8 @@ run {
     )
      */
 }
+
+jar.enabled(false)
 
 jar {
     manifest {
